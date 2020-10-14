@@ -2,7 +2,7 @@
 
 namespace Den1ske\SendPulseAPI;
 
-use Den1ske\SendPulseAPIInterface\SendPulseAPIInterface;
+use Den1ske\SendPulseAPI\SendPulseInterface;
 
 /*
  * SendPulse REST API PHP Class
@@ -13,7 +13,7 @@ use Den1ske\SendPulseAPIInterface\SendPulseAPIInterface;
  *
  */
 
-class SendPulseApi implements SendPulseAPIInterface
+class SendPulse implements SendPulseInterface
 {
 
     private $apiUrl = 'https://api.sendpulse.com';

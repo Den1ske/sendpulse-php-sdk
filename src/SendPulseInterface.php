@@ -1,6 +1,6 @@
 <?php
 
-namespace Den1ske\SendPulseAPIInterface;
+namespace Den1ske\SendPulseAPI;
 
 /*
  * Interface for SendPulse REST API
@@ -11,7 +11,7 @@ namespace Den1ske\SendPulseAPIInterface;
  *
  */
 
-interface SendPulseAPIInterface {
+interface SendPulseInterface {
 
     /**
      * Create new address book

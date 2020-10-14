@@ -4,5 +4,10 @@
   "minimum-stability": "dev",
   "require": {
     "php": "^7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Den1ske\\SendPulseAPI\\": "src/"
+    }
   }
 }
