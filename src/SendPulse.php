@@ -139,10 +139,9 @@ class SendPulse implements SendPulseInterface
         $url    = $this->apiUrl . '/' . $path;
         $method = strtoupper($method);
         $curl   = curl_init();
-
+        $headers = ['Content-Type:application/json'];
         if ($useToken && !empty($this->token)) {
-            $headers = ['Authorization: Bearer ' . $this->token, 'Content-Type:application/json'];
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            $headers[] = 'Authorization: Bearer ' . $this->token;
         }
 
         switch ($method) {
@@ -168,6 +167,7 @@ class SendPulse implements SendPulseInterface
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_HEADER, 1);
 
         $response     = curl_exec($curl);
