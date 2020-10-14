@@ -47,7 +47,7 @@ class SendPulse implements SendPulseInterface
     public function __construct($userId, $secret, $storageType = 'file')
     {
         if (empty($userId) || empty($secret)) {
-            throw new Exception('Empty ID or SECRET');
+            throw new \Exception('Empty ID or SECRET');
         }
 
         $this->userId      = $userId;
@@ -62,7 +62,7 @@ class SendPulse implements SendPulseInterface
                 }
                 break;
             case 'memcache':
-                $memcache = new Memcache();
+                $memcache = new \Memcache();
                 $memcache->connect('localhost', 11211) or die('Could not connect to Memcache');
                 $token = $memcache->get($hashName);
                 if (!empty($token)) {
@@ -78,7 +78,7 @@ class SendPulse implements SendPulseInterface
 
         if (empty($this->token)) {
             if (!$this->getToken()) {
-                throw new Exception('Could not connect to api, check your ID and SECRET');
+                throw new \Exception('Could not connect to api, check your ID and SECRET');
             }
         }
     }
@@ -111,7 +111,7 @@ class SendPulse implements SendPulseInterface
                 $_SESSION[$hashName] = $this->token;
                 break;
             case 'memcache':
-                $memcache = new Memcache();
+                $memcache = new \Memcache();
                 $memcache->connect('localhost', 11211) or die('Could not connect to Memcache');
                 $memcache->set($hashName, $this->token, false, 3600);
                 break;
@@ -182,7 +182,7 @@ class SendPulse implements SendPulseInterface
             $this->getToken();
             $return = $this->sendRequest($path, $method, $data);
         } else {
-            $return            = new stdClass();
+            $return            = new \stdClass();
             $return->data      = json_decode($responseBody);
             $return->http_code = $headerCode;
         }
@@ -200,7 +200,7 @@ class SendPulse implements SendPulseInterface
     private function handleResult($data)
     {
         if (empty($data->data)) {
-            $data->data = new stdClass();
+            $data->data = new \stdClass();
         }
         if ($data->http_code != 200) {
             $data->data->is_error  = true;
@@ -219,7 +219,7 @@ class SendPulse implements SendPulseInterface
      */
     private function handleError($customMessage = null)
     {
-        $message           = new stdClass();
+        $message           = new \stdClass();
         $message->is_error = true;
         if (!is_null($customMessage)) {
             $message->message = $customMessage;
