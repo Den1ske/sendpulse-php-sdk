@@ -1,0 +1,7 @@
+{
+  "name": "den1ske/sendpulse-php-sdk",
+  "description": "Unofficial Sendpulse PHP SDK",
+  "require": {
+    "php": "^7.2"
+  }
+}
