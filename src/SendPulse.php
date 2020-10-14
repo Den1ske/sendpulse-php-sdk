@@ -70,6 +70,7 @@ class SendPulse implements SendPulseInterface
                 }
                 break;
             default:
+                $this->apiFilesPath = sys_get_temp_dir().'/';
                 $filePath = $this->apiFilesPath . $hashName;
                 if (file_exists($filePath)) {
                     $this->token = file_get_contents($filePath);
